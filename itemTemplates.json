@@ -9,11 +9,18 @@
       "data": {
         "operationalLayers": [
           {
-            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/3"
           }
         ],
+        "baseMap": {
+          "baseMapLayers": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+            }
+          ]
+        },
         "spatialReference": {
-          "wkid": 102100
+          "wkid": 102101
         }
       }
     },
@@ -26,18 +33,18 @@
       "data": {
         "operationalLayers": [
           {
-            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/2"
           }
         ],
         "baseMap": {
           "baseMapLayers": [
             {
-              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer"
             }
           ]
         },
         "spatialReference": {
-          "wkid": 102100
+          "wkid": 102102
         }
       }
     },
@@ -50,11 +57,18 @@
       "data": {
         "operationalLayers": [
           {
-            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/1"
           }
         ],
+        "baseMap": {
+          "baseMapLayers": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer"
+            }
+          ]
+        },
         "spatialReference": {
-          "wkid": 102100
+          "wkid": 102103
         }
       }
     }

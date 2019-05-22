@@ -60,26 +60,46 @@ def handle_event(event, portal_url):
 
 def check_item(item_id):
     item = gis.content.get(item_id)
+    item_data = item.get_data()
     needed_for_template = []
     for item_template in item_templates['templates']:
         needed = {}
         
+        # props
         needed_tags = compare_tags(item_template['tags'], item.tags)
         if len(needed_tags) != 0:
             needed['tags'] = needed_tags
+
         needed_description_strings = compare_substring_list(item_template['description_substrings'], item.description)
         if len(needed_description_strings) != 0:
             needed['description_strings'] = needed_description_strings
+
         needed_title_strings = compare_substring_list(item_template['title_substrings'], item.title)
         if len(needed_title_strings) != 0:
             needed['title_strings'] = needed_title_strings
+
         needed_type = compare_property(item_template['type'], item.type)
         if needed_type:
             needed['type'] = needed_type
+
         needed_access = compare_property(item_template['access'], item.access)
         if needed_access:
             needed['access'] = needed_access
-        
+
+        # data props
+        item_data_template = item_template['data']
+        needed_layers = compare_layers(item_data_template['operationalLayers'], item_data['operationalLayers'])
+        if needed_layers:
+            needed['layers'] = needed_layers
+
+        needed_basemap_layers = compare_layers(item_data_template['baseMap']['baseMapLayers'], item_data['baseMap']['baseMapLayers'])
+        if needed_basemap_layers:
+            needed['basemapLayers'] = needed_basemap_layers
+            
+        needed_SR = compare_property(item_data_template['spatialReference']['wkid'], item_data['spatialReference']['wkid'])
+        if needed_SR:
+            needed['SR'] = needed_SR
+
         if needed == {}:
             return None
         else:
@@ -100,6 +120,18 @@ def compare_tags(template_tags, tags):
         if template_tag not in tags:
             needed_tags.append(template_tag)
     return needed_tags
+
+
+def compare_layers(template_layers, layers):
+    needed_layers = []
+    for template_layer in template_layers:
+        match = False
+        for layer in layers:
+            if layer['url'] == template_layer['url']:
+                match = True
+        if not match:
+            needed_layers.append(template_layer['url'])
+    return needed_layers
 
 
 def compare_substring_list(template_substrings, actual_string):
@@ -147,9 +179,13 @@ def send_email(event, portal_url, needed_for_template):
     content = 'An {0} operation occurred at {1} for {2} at {3}'.format(operation, ts_date.strftime('%Y-%m-%d %H:%M:%S'), source, item_url)
     content += '\n\nThere was a mismatch in metadata.'
     content += ' To meet the standards that you have set, you must make one of the following sets of changes:\n'
-    joiner = ','
+    joiner = ', '
     needed_ctr = 0
     for needed in needed_for_template:
+        if 'layers' in needed:
+            content += '\n\tAdd layers: {}'.format(joiner.join(needed['layers']))
+        if 'basemapLayers' in needed:
+            content += '\n\tAdd basemap layers: {}'.format(joiner.join(needed['basemapLayers']))
         if 'tags' in needed:
             content += '\n\tAdd tags: {}'.format(joiner.join(needed['tags']))
         if 'description_strings' in needed:
@@ -160,6 +196,9 @@ def send_email(event, portal_url, needed_for_template):
             content += '\n\tChange your type: {}'.format(needed['type'])
         if 'access' in needed:
             content += '\n\tChange your access: {}'.format(needed['access'])
+        if 'SR' in needed:
+            content += '\n\tChange your spatial reference: {}'.format(needed['SR'])
+        
         needed_ctr += 1
         if needed_ctr < len(needed_for_template):
             content += '\n\nOR\n'
