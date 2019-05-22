@@ -1,0 +1,62 @@
+{
+  "templates": [
+    {
+      "tags": ["template1"],
+      "description_substrings": ["Is this in the description for template1?"],
+      "title_substrings": ["template1"],
+      "type": "Web Map",
+      "access": "private",
+      "data": {
+        "operationalLayers": [
+          {
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+          }
+        ],
+        "spatialReference": {
+          "wkid": 102100
+        }
+      }
+    },
+    {
+      "tags": ["template2", "template2-alt"],
+      "description_substrings": ["Is this in the description for template2?"],
+      "title_substrings": ["template2"],
+      "type": "Web Map",
+      "access": "private",
+      "data": {
+        "operationalLayers": [
+          {
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+          }
+        ],
+        "baseMap": {
+          "baseMapLayers": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
+            }
+          ]
+        },
+        "spatialReference": {
+          "wkid": 102100
+        }
+      }
+    },
+    {
+      "tags": ["template3", "template3-alt", "template3-alt-2"],
+      "description_substrings": ["Is this in the description for template3?"],
+      "title_substrings": ["template3"],
+      "type": "Web Map",
+      "access": "public",
+      "data": {
+        "operationalLayers": [
+          {
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
+          }
+        ],
+        "spatialReference": {
+          "wkid": 102100
+        }
+      }
+    }
+  ]
+}

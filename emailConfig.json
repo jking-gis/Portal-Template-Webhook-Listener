@@ -1,0 +1,9 @@
+{
+    "port": 465,
+    "smtp_server": "smtp.esri.com",
+    "sender": "jking@esri.com",
+    "subject": "Portal Item Mismatch!",
+    "recipients": [
+        "jking@esri.com"
+    ]
+}
