@@ -22,6 +22,6 @@ A webhook listener that allows you to define a template for various items within
 * When you actually create the webhook:
   * Name the webhook whatever
   * Enter the URL to your flask server in the payload URL
-  * Make the webhook trigger on any event
+  * Make the webhook trigger on any event (webmap item events are the only working ones at the moment)
 
 ## Try creating or editing Portal items, and you should receive an email if the item mismatches your templates in itemTemplates.json
