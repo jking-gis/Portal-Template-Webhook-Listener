@@ -51,7 +51,8 @@ def handle_event(event, portal_url):
     if source == 'item':
         init_GIS(portal_url)
         needed_for_template = check_item(item_id)
-        send_email(event, portal_url, needed_for_template)
+        if needed_for_template:
+            send_email(event, portal_url, needed_for_template)
     elif source == 'group':
         pass # implement this later
     elif source == 'user':
@@ -101,7 +102,7 @@ def check_item(item_id):
             needed['SR'] = needed_SR
 
         if needed == {}:
-            return needed
+            return None
         else:
             needed_for_template.append(needed)
     return needed_for_template
