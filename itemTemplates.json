@@ -9,18 +9,18 @@
       "data": {
         "operationalLayers": [
           {
-            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/3"
+            "url": "https://PSTEGDEMO.esri.com/server/rest/services/Hosted/Hooky/FeatureServer/0"
           }
         ],
         "baseMap": {
           "baseMapLayers": [
             {
-              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
             }
           ]
         },
         "spatialReference": {
-          "wkid": 102101
+          "wkid": 102100
         }
       }
     },

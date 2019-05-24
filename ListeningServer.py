@@ -101,7 +101,7 @@ def check_item(item_id):
             needed['SR'] = needed_SR
 
         if needed == {}:
-            return None
+            return needed
         else:
             needed_for_template.append(needed)
     return needed_for_template
